@@ -1,0 +1,593 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Esalen Institute - Gestalt Singing Workshop</title>
+    <style>
+        /* Global styles */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Montserrat', sans-serif;
+        }
+        
+        body {
+            background-color: #f9f7f4;
+            color: #333;
+            line-height: 1.6;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        
+        /* Header styles */
+        header {
+            background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url('/api/placeholder/1200/600');
+            background-size: cover;
+            background-position: center;
+            color: #fff;
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            padding: 0 20px;
+        }
+        
+        .logo {
+            margin-bottom: 20px;
+            font-size: 24px;
+            letter-spacing: 2px;
+        }
+        
+        .header-content h1 {
+            font-size: 3.5rem;
+            margin-bottom: 20px;
+            letter-spacing: 2px;
+        }
+        
+        .header-content p {
+            font-size: 1.2rem;
+            max-width: 700px;
+            margin-bottom: 40px;
+        }
+        
+        .btn {
+            display: inline-block;
+            background-color: #e67e22;
+            color: #fff;
+            padding: 12px 30px;
+            text-decoration: none;
+            border-radius: 30px;
+            font-weight: 600;
+            transition: background-color 0.3s;
+        }
+        
+        .btn:hover {
+            background-color: #d35400;
+        }
+        
+        /* Navigation */
+        nav {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            background-color: rgba(255, 255, 255, 0.9);
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            z-index: 100;
+            transition: all 0.3s;
+        }
+        
+        nav .container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px;
+        }
+        
+        .nav-logo {
+            font-weight: 700;
+            font-size: 1.5rem;
+            color: #333;
+            text-decoration: none;
+        }
+        
+        .nav-menu {
+            display: flex;
+            list-style: none;
+        }
+        
+        .nav-menu li {
+            margin-left: 30px;
+        }
+        
+        .nav-menu a {
+            color: #333;
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.3s;
+        }
+        
+        .nav-menu a:hover {
+            color: #e67e22;
+        }
+        
+        /* About section */
+        .about {
+            padding: 100px 0;
+            background-color: #fff;
+        }
+        
+        .about-content {
+            display: flex;
+            align-items: center;
+            gap: 50px;
+        }
+        
+        .about-text {
+            flex: 1;
+        }
+        
+        .about-text h2 {
+            font-size: 2.5rem;
+            margin-bottom: 20px;
+            color: #333;
+        }
+        
+        .about-text p {
+            margin-bottom: 20px;
+            color: #666;
+        }
+        
+        .about-image {
+            flex: 1;
+        }
+        
+        .about-image img {
+            width: 100%;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        }
+        
+        /* Workshop section */
+        .workshops {
+            padding: 100px 0;
+            background-color: #f9f7f4;
+        }
+        
+        .section-header {
+            text-align: center;
+            margin-bottom: 50px;
+        }
+        
+        .section-header h2 {
+            font-size: 2.5rem;
+            color: #333;
+            margin-bottom: 20px;
+        }
+        
+        .section-header p {
+            color: #666;
+            max-width: 700px;
+            margin: 0 auto;
+        }
+        
+        .workshops-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+        }
+        
+        .workshop-card {
+            background-color: #fff;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s;
+        }
+        
+        .workshop-card:hover {
+            transform: translateY(-10px);
+        }
+        
+        .workshop-image {
+            height: 200px;
+            background-size: cover;
+            background-position: center;
+        }
+        
+        .workshop-content {
+            padding: 20px;
+        }
+        
+        .workshop-content h3 {
+            font-size: 1.5rem;
+            margin-bottom: 10px;
+            color: #333;
+        }
+        
+        .workshop-content p {
+            color: #666;
+            margin-bottom: 20px;
+        }
+        
+        .workshop-content .date {
+            font-weight: 600;
+            color: #e67e22;
+            margin-bottom: 10px;
+            display: block;
+        }
+        
+        /* Testimonials */
+        .testimonials {
+            padding: 100px 0;
+            background-color: #fff;
+        }
+        
+        .testimonials-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+        }
+        
+        .testimonial-card {
+            background-color: #f9f7f4;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+        }
+        
+        .testimonial-text {
+            font-style: italic;
+            margin-bottom: 20px;
+            color: #666;
+        }
+        
+        .testimonial-author {
+            display: flex;
+            align-items: center;
+        }
+        
+        .testimonial-author img {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            margin-right: 15px;
+        }
+        
+        .author-info h4 {
+            color: #333;
+            margin-bottom: 5px;
+        }
+        
+        .author-info p {
+            color: #999;
+            font-size: 0.9rem;
+        }
+        
+        /* Contact section */
+        .contact {
+            padding: 100px 0;
+            background-color: #f9f7f4;
+        }
+        
+        .contact-form {
+            max-width: 600px;
+            margin: 0 auto;
+            background-color: #fff;
+            padding: 40px;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        }
+        
+        .form-group {
+            margin-bottom: 20px;
+        }
+        
+        .form-group label {
+            display: block;
+            margin-bottom: 5px;
+            color: #333;
+            font-weight: 500;
+        }
+        
+        .form-control {
+            width: 100%;
+            padding: 12px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            font-size: 1rem;
+        }
+        
+        textarea.form-control {
+            height: 150px;
+            resize: vertical;
+        }
+        
+        .submit-btn {
+            background-color: #e67e22;
+            color: #fff;
+            border: none;
+            padding: 12px 30px;
+            border-radius: 30px;
+            cursor: pointer;
+            font-size: 1rem;
+            font-weight: 600;
+            transition: background-color 0.3s;
+        }
+        
+        .submit-btn:hover {
+            background-color: #d35400;
+        }
+        
+        /* Footer */
+        footer {
+            background-color: #333;
+            color: #fff;
+            padding: 60px 0 30px;
+        }
+        
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 30px;
+            margin-bottom: 40px;
+        }
+        
+        .footer-column h3 {
+            font-size: 1.2rem;
+            margin-bottom: 20px;
+            color: #fff;
+        }
+        
+        .footer-column p {
+            color: #aaa;
+            margin-bottom: 10px;
+        }
+        
+        .footer-column ul {
+            list-style: none;
+        }
+        
+        .footer-column ul li {
+            margin-bottom: 10px;
+        }
+        
+        .footer-column ul li a {
+            color: #aaa;
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+        
+        .footer-column ul li a:hover {
+            color: #e67e22;
+        }
+        
+        .footer-bottom {
+            text-align: center;
+            padding-top: 20px;
+            border-top: 1px solid #444;
+            color: #aaa;
+        }
+        
+        /* Media queries */
+        @media (max-width: 768px) {
+            .header-content h1 {
+                font-size: 2.5rem;
+            }
+            
+            .about-content {
+                flex-direction: column;
+            }
+            
+            .nav-menu {
+                display: none;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav>
+        <div class="container">
+            <a href="#" class="nav-logo">Esalen Institute</a>
+            <ul class="nav-menu">
+                <li><a href="#about">About</a></li>
+                <li><a href="#workshops">Workshops</a></li>
+                <li><a href="#testimonials">Testimonials</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
+        </div>
+    </nav>
+    
+    <!-- Header -->
+    <header>
+        <div class="logo">ESALEN INSTITUTE</div>
+        <div class="header-content">
+            <h1>Gestalt Singing Workshop</h1>
+            <p>Discover your authentic voice and transform your relationship with singing through the healing power of Gestalt principles</p>
+            <a href="#workshops" class="btn">Explore Workshops</a>
+        </div>
+    </header>
+    
+    <!-- About Section -->
+    <section id="about" class="about">
+        <div class="container">
+            <div class="about-content">
+                <div class="about-text">
+                    <h2>About Gestalt Singing</h2>
+                    <p>The Gestalt Singing workshop at Esalen Institute offers a transformative approach to singing that integrates body, mind, and spirit. Gestalt principles emphasize awareness, presence, and authenticity — all essential elements of truly expressive singing.</p>
+                    <p>Through this unique methodology, participants discover how to move beyond technical limitations and connect with their authentic voice. Whether you're a professional singer or someone who has been told you "can't sing," this workshop provides a safe space to explore and expand your vocal expression.</p>
+                    <p>Our approach focuses on the healing aspects of vocalization, helping participants work through emotional blocks, enhance self-expression, and develop a deeper connection with themselves and others through the power of voice.</p>
+                </div>
+                <div class="about-image">
+                    <img src="/api/placeholder/600/400" alt="People singing together at Esalen Institute">
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Workshops Section -->
+    <section id="workshops" class="workshops">
+        <div class="container">
+            <div class="section-header">
+                <h2>Upcoming Workshops</h2>
+                <p>Join us for transformative experiences that will help you discover your authentic voice and deepen your relationship with singing</p>
+            </div>
+            <div class="workshops-grid">
+                <div class="workshop-card">
+                    <div class="workshop-image" style="background-image: url('/api/placeholder/400/250')"></div>
+                    <div class="workshop-content">
+                        <span class="date">April 15-20, 2025</span>
+                        <h3>Finding Your Authentic Voice</h3>
+                        <p>This five-day immersive workshop focuses on breaking through barriers to authentic vocal expression using Gestalt techniques.</p>
+                        <a href="#" class="btn">Learn More</a>
+                    </div>
+                </div>
+                <div class="workshop-card">
+                    <div class="workshop-image" style="background-image: url('/api/placeholder/400/250')"></div>
+                    <div class="workshop-content">
+                        <span class="date">May 22-27, 2025</span>
+                        <h3>Singing as Healing</h3>
+                        <p>Explore the therapeutic potential of singing and vocalization to process emotions and promote healing through the Gestalt approach.</p>
+                        <a href="#" class="btn">Learn More</a>
+                    </div>
+                </div>
+                <div class="workshop-card">
+                    <div class="workshop-image" style="background-image: url('/api/placeholder/400/250')"></div>
+                    <div class="workshop-content">
+                        <span class="date">June 10-15, 2025</span>
+                        <h3>Group Harmony: Vocal Community</h3>
+                        <p>Experience the transformative power of collective singing and voice work in a supportive Gestalt-informed environment.</p>
+                        <a href="#" class="btn">Learn More</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Testimonials Section -->
+    <section id="testimonials" class="testimonials">
+        <div class="container">
+            <div class="section-header">
+                <h2>Participant Experiences</h2>
+                <p>Hear from those who have transformed their relationship with their voice through our Gestalt Singing workshops</p>
+            </div>
+            <div class="testimonials-grid">
+                <div class="testimonial-card">
+                    <p class="testimonial-text">"The Gestalt Singing workshop was genuinely life-changing. I've always been told I couldn't sing, but this experience helped me find my authentic voice and the confidence to express myself fully."</p>
+                    <div class="testimonial-author">
+                        <img src="/api/placeholder/100/100" alt="Sarah M.">
+                        <div class="author-info">
+                            <h4>Sarah M.</h4>
+                            <p>Workshop Participant</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="testimonial-card">
+                    <p class="testimonial-text">"As a professional singer, I was amazed at how the Gestalt approach opened new dimensions in my performance. I'm now singing with more authenticity and emotional connection than ever before."</p>
+                    <div class="testimonial-author">
+                        <img src="/api/placeholder/100/100" alt="David L.">
+                        <div class="author-info">
+                            <h4>David L.</h4>
+                            <p>Opera Singer</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="testimonial-card">
+                    <p class="testimonial-text">"The healing power of this work is profound. Through guided vocal exercises and Gestalt principles, I was able to process grief that I'd been carrying for years. My voice literally and figuratively opened up."</p>
+                    <div class="testimonial-author">
+                        <img src="/api/placeholder/100/100" alt="Jennifer K.">
+                        <div class="author-info">
+                            <h4>Jennifer K.</h4>
+                            <p>Therapist</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Contact Section -->
+    <section id="contact" class="contact">
+        <div class="container">
+            <div class="section-header">
+                <h2>Contact Us</h2>
+                <p>Interested in learning more about our Gestalt Singing workshops? Get in touch with us</p>
+            </div>
+            <div class="contact-form">
+                <form action="#" method="POST">
+                    <div class="form-group">
+                        <label for="name">Your Name</label>
+                        <input type="text" id="name" class="form-control" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="email">Email Address</label>
+                        <input type="email" id="email" class="form-control" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="subject">Subject</label>
+                        <input type="text" id="subject" class="form-control" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="message">Your Message</label>
+                        <textarea id="message" class="form-control" required></textarea>
+                    </div>
+                    <button type="submit" class="submit-btn">Send Message</button>
+                </form>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-column">
+                    <h3>Esalen Institute</h3>
+                    <p>55000 Highway 1</p>
+                    <p>Big Sur, CA 93920</p>
+                    <p>Phone: (831) 667-3000</p>
+                    <p>Email: info@esalen.org</p>
+                </div>
+                <div class="footer-column">
+                    <h3>Workshops</h3>
+                    <ul>
+                        <li><a href="#">Gestalt Singing</a></li>
+                        <li><a href="#">Voice & Movement</a></li>
+                        <li><a href="#">Vocal Healing</a></li>
+                        <li><a href="#">Group Harmonies</a></li>
+                    </ul>
+                </div>
+                <div class="footer-column">
+                    <h3>About Us</h3>
+                    <ul>
+                        <li><a href="#">Our Philosophy</a></li>
+                        <li><a href="#">Faculty & Staff</a></li>
+                        <li><a href="#">Facilities</a></li>
+                        <li><a href="#">History</a></li>
+                    </ul>
+                </div>
+                <div class="footer-column">
+                    <h3>Connect</h3>
+                    <ul>
+                        <li><a href="#">Facebook</a></li>
+                        <li><a href="#">Instagram</a></li>
+                        <li><a href="#">Twitter</a></li>
+                        <li><a href="#">YouTube</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2025 Esalen Institute. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+</body>
+</html>
